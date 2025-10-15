@@ -5,62 +5,63 @@ import models.response.CreateUserResponse;
 import models.response.UserResponse;
 import models.response.UsersListResponse;
 import specs.ResponseSpec;
+
 import static io.restassured.RestAssured.given;
 
 public class UserManagementApi {
-    
+
     public UsersListResponse getUsersList(int page) {
         return given()
                 .queryParam("page", page)
-            .when()
-                .get("/api/users")
-            .then()
-                .spec(ResponseSpec.successResponseSpec)
+                .when()
+                .get("/users")
+                .then()
+                .spec(ResponseSpec.responseSpec(200))
                 .extract().as(UsersListResponse.class);
     }
-    
+
     public UserResponse getSingleUser(int userId) {
         return given()
-            .when()
-                .get("/api/users/{id}", userId)
-            .then()
-                .spec(ResponseSpec.successResponseSpec)
+                .when()
+                .get("/users/{id}", userId)
+                .then()
+                .spec(ResponseSpec.responseSpec(200))
                 .extract().as(UserResponse.class);
     }
-    
+
     public CreateUserResponse createUser(CreateUserRequest request) {
         return given()
                 .body(request)
-            .when()
-                .post("/api/users")
-            .then()
-                .spec(ResponseSpec.createdResponseSpec)
+                .when()
+                .post("/users")
+                .then()
+                .spec(ResponseSpec.responseSpec(201))
                 .extract().as(CreateUserResponse.class);
     }
-    
+
     public void deleteUser(int userId) {
         given()
-            .when()
-                .delete("/api/users/{id}", userId)
-            .then()
-                .spec(ResponseSpec.noContentResponseSpec);
+                .when()
+                .delete("/users/{id}", userId)
+                .then()
+                .spec(ResponseSpec.responseSpec(204));
     }
 
     public void getUserNotFound(int userId) {
         given()
-            .when()
-                .get("/api/users/{id}", userId)
-            .then()
-                .spec(ResponseSpec.notFoundResponseSpec);
+                .when()
+                .get("/users/{id}", userId)
+                .then()
+                .spec(ResponseSpec.responseSpec(404));
     }
-    
+
     public CreateUserResponse updateUser(int userId, CreateUserRequest request) {
         return given()
                 .body(request)
-            .when()
-                .put("/api/users/{id}", userId)
-            .then()
-                .spec(ResponseSpec.successResponseSpec)
+                .when()
+                .put("/users/{id}", userId)
+                .then()
+                .spec(ResponseSpec.responseSpec(200))
                 .extract().as(CreateUserResponse.class);
     }
 }

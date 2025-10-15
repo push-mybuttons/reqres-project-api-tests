@@ -11,19 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserResponse {
-    
+
     @SerializedName("name")
     private String name;
-    
-    @SerializedName("job")  
+
+    @SerializedName("job")
     private String job;
-    
+
     @SerializedName("id")
     private String id;
-    
+
     @SerializedName("createdAt")
     private String createdAt;
-    
+
     @SerializedName("updatedAt")
     private String updatedAt;
 }

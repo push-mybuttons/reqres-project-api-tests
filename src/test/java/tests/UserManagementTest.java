@@ -19,7 +19,7 @@ import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 import static helpers.TestData.Users.*;
 
-@Epic("Reqres API") 
+@Epic("Reqres API")
 @Feature("User Management")
 @Story("User Operations")
 @Owner("MariiaP")
@@ -32,8 +32,8 @@ public class UserManagementTest extends BaseApiTest {
     @Severity(SeverityLevel.CRITICAL)
     @Tag("smoke")
     void getUsersListFirstPageTest() {
-        UsersListResponse response = step("Получение списка пользователей с 1 страницы", () -> 
-            userApi.getUsersList(1)
+        UsersListResponse response = step("Получение списка пользователей с 1 страницы", () ->
+                userApi.getUsersList(1)
         );
 
         step("Проверка метаданных пагинации", () -> {
@@ -61,14 +61,14 @@ public class UserManagementTest extends BaseApiTest {
     @DisplayName("Получение конкретных пользователей с проверкой данных")
     @Severity(SeverityLevel.NORMAL)
     @CsvSource({
-        "1, george.bluth@reqres.in, George, Bluth",
-        "2, janet.weaver@reqres.in, Janet, Weaver",
-        "3, emma.wong@reqres.in, Emma, Wong"
+            "1, george.bluth@reqres.in, George, Bluth",
+            "2, janet.weaver@reqres.in, Janet, Weaver",
+            "3, emma.wong@reqres.in, Emma, Wong"
     })
-    void getSingleUserWithSpecificDataTest(int userId, String expectedEmail, 
-                                          String expectedFirstName, String expectedLastName) {
-        UserResponse response = step("Получение пользователя с ID: " + userId, () -> 
-            userApi.getSingleUser(userId)
+    void getSingleUserWithSpecificDataTest(int userId, String expectedEmail,
+                                           String expectedFirstName, String expectedLastName) {
+        UserResponse response = step("Получение пользователя с ID: " + userId, () ->
+                userApi.getSingleUser(userId)
         );
 
         step("Проверка конкретных данных пользователя " + expectedFirstName, () -> {
@@ -78,14 +78,14 @@ public class UserManagementTest extends BaseApiTest {
             assertThat(user.getFirstName()).isEqualTo(expectedFirstName);
             assertThat(user.getLastName()).isEqualTo(expectedLastName);
             assertThat(user.getAvatar())
-                .startsWith("https://reqres.in/img/faces/")
-                .endsWith("-image.jpg");
+                    .startsWith("https://reqres.in/img/faces/")
+                    .endsWith("-image.jpg");
         });
     }
 
     @Test
     @DisplayName("Получение несуществующего пользователя")
-    @Severity(SeverityLevel.CRITICAL) 
+    @Severity(SeverityLevel.CRITICAL)
     @Tag("negative")
     void getUserNotFoundTest() {
         step("Попытка получить несуществующего пользователя с ID 23", () -> {
@@ -98,12 +98,12 @@ public class UserManagementTest extends BaseApiTest {
     @Severity(SeverityLevel.BLOCKER)
     @Tag("smoke")
     void createUserWithFullValidationTest() {
-        CreateUserRequest userData = step("Подготовка данных пользователя", () -> 
-            validUserData()
+        CreateUserRequest userData = step("Подготовка данных пользователя", () ->
+                validUserData()
         );
 
-        CreateUserResponse response = step("Создание пользователя", () -> 
-            userApi.createUser(userData)
+        CreateUserResponse response = step("Создание пользователя", () ->
+                userApi.createUser(userData)
         );
 
         step("Полная проверка созданного пользователя", () -> {
@@ -120,14 +120,14 @@ public class UserManagementTest extends BaseApiTest {
     @Tag("crud")
     void updateUserTest() {
         CreateUserRequest updateData = step("Подготовка данных для обновления", () ->
-            CreateUserRequest.builder()
-                .name("Updated Name")
-                .job("Updated Job")
-                .build()
+                CreateUserRequest.builder()
+                        .name("Updated Name")
+                        .job("Updated Job")
+                        .build()
         );
 
-        CreateUserResponse response = step("Обновление пользователя с ID 2", () -> 
-            userApi.updateUser(2, updateData)
+        CreateUserResponse response = step("Обновление пользователя с ID 2", () ->
+                userApi.updateUser(2, updateData)
         );
 
         step("Проверка обновленных данных", () -> {

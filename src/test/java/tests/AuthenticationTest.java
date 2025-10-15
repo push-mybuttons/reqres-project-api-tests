@@ -24,9 +24,9 @@ import static helpers.TestData.Login.*;
 @Story("User Login")
 @Owner("MariiaP")
 public class AuthenticationTest extends BaseApiTest {
-    
+
     private final AuthenticationApi authApi = new AuthenticationApi();
-    
+
     @Test
     @DisplayName("Успешная авторизация пользователя")
     @Severity(SeverityLevel.BLOCKER)
@@ -34,24 +34,24 @@ public class AuthenticationTest extends BaseApiTest {
     void successfulLoginTest() {
         LoginRequest loginData = step("Подготовка валидных данных", () -> validLoginData());
 
-        LoginResponse response = step("Выполнение авторизации", () -> 
-            authApi.login(loginData)
+        LoginResponse response = step("Выполнение авторизации", () ->
+                authApi.login(loginData)
         );
 
         step("Проверка токена", () -> {
             assertThat(response.getToken()).isNotNull().isNotEmpty();
         });
     }
-    
+
     @ParameterizedTest(name = "Неуспешная авторизация: {2}")
     @Severity(SeverityLevel.CRITICAL)
     @MethodSource("invalidLoginDataProvider")
     void unsuccessfulLoginTest(LoginRequest loginData, String expectedError, String testCaseName) {
-        
-        ErrorResponse response = step("Выполнение неуспешной авторизации", () -> 
-            authApi.loginWithInvalidData(loginData)
+
+        ErrorResponse response = step("Выполнение неуспешной авторизации", () ->
+                authApi.loginWithInvalidData(loginData)
         );
-        
+
         step("Проверка ошибки", () -> {
             assertThat(response.getError()).isEqualTo(expectedError);
         });
@@ -63,16 +63,16 @@ public class AuthenticationTest extends BaseApiTest {
     @Tag("negative")
     void nonExistentUserLoginTest() {
         LoginRequest loginData = step("Подготовка данных несуществующего пользователя", () ->
-            LoginRequest.builder()
-                .email("nonexistent@test.com")
-                .password("wrongpassword")
-                .build()
+                LoginRequest.builder()
+                        .email("nonexistent@test.com")
+                        .password("wrongpassword")
+                        .build()
         );
-        
-        ErrorResponse response = step("Выполнение авторизации", () -> 
-            authApi.loginWithNonExistentUser(loginData)
+
+        ErrorResponse response = step("Выполнение авторизации", () ->
+                authApi.loginWithNonExistentUser(loginData)
         );
-        
+
         step("Проверка ошибки", () -> {
             assertThat(response.getError()).isNotEmpty();
         });
@@ -80,9 +80,9 @@ public class AuthenticationTest extends BaseApiTest {
 
     static Stream<Arguments> invalidLoginDataProvider() {
         return Stream.of(
-            Arguments.of(emptyEmailData(), "Missing email or username", "Авторизация с пустым email"),
-            Arguments.of(emptyPasswordData(), "Missing password", "Авторизация с пустым паролем"), 
-            Arguments.of(LoginRequest.builder().build(), "Missing email or username", "Авторизация с полностью пустыми данными")
+                Arguments.of(emptyEmailData(), "Missing email or username", "Авторизация с пустым email"),
+                Arguments.of(emptyPasswordData(), "Missing password", "Авторизация с пустым паролем"),
+                Arguments.of(LoginRequest.builder().build(), "Missing email or username", "Авторизация с полностью пустыми данными")
         );
     }
 }

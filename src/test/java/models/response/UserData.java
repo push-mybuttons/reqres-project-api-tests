@@ -11,19 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserData {
-    
-    @SerializedName("id")
+
     private Integer id;
-    
-    @SerializedName("email")
     private String email;
-    
+
     @SerializedName("first_name")
     private String firstName;
-    
+
     @SerializedName("last_name")
     private String lastName;
-    
-    @SerializedName("avatar")
+
     private String avatar;
 }

@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserRequest {
-    
+
     @SerializedName("name")
     private String name;
-    
+
     @SerializedName("job")
     private String job;
 }

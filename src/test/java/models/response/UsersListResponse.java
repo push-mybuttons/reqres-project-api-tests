@@ -13,19 +13,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsersListResponse {
-    
+
     @SerializedName("page")
     private Integer page;
-    
+
     @SerializedName("per_page")
     private Integer perPage;
-    
+
     @SerializedName("total")
     private Integer total;
-    
+
     @SerializedName("total_pages")
     private Integer totalPages;
-    
+
     @SerializedName("data")
     private List<UserData> data;
 }
