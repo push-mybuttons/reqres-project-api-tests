@@ -1,3 +1,7 @@
+<p align="center"> 
+  <img src="https://reqres.in/img/logo.png" title="reqres" alt="reqres" width="236" height="120"/>
+</p>
+
 # 🚀 Проект автотестирования Reqres API
 
 Дипломный проект по автоматизированному тестированию REST API сервиса [Reqres](https://reqres.in/)
@@ -5,7 +9,6 @@
 ## 📋 Содержание
 - [Технологии и инструменты](#технологии-и-инструменты)
 - [Покрытый функционал](#покрытый-функционал)
-- [Структура проекта](#структура-проекта)
 - [Запуск тестов](#запуск-тестов)
 - [Allure отчет](#allure-отчет)
 
@@ -13,17 +16,17 @@
 
 <p align="left">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" title="Java" alt="Java" width="40" height="40"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-plain.svg" title="Gradle" alt="Gradle" width="40" height="40"/>
-<img src="https://plugins.jetbrains.com/files/13964/451258/icon/pluginIcon.svg" title="JUnit 5" alt="JUnit 5" width="40" height="40"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg" title="Gradle" alt="Gradle" width="40" height="40"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original-wordmark.svg" title="JUnit 5" alt="JUnit 5" width="40" height="40"/>      
 <img src="https://avatars.githubusercontent.com/u/19369327?s=200&v=4" title="REST Assured" alt="REST Assured" width="40" height="40"/>
 <img src="https://avatars.githubusercontent.com/u/5879054?s=200&v=4" title="Allure Report" alt="Allure Report" width="40" height="40"/>
 </p>
 
 - **Java 17** - язык программирования
 - **Gradle** - система автоматизации сборки проекта
-- **JUnit 5** - фреймворк для модульного тестирования
+- **JUnit 5** - фреймворк для тестирования
 - **REST Assured** - библиотека для тестирования REST API
-- **Allure Report** - фреймворк для создания понятных и подробных отчетов о тестировании
+- **Allure Report** - инструмент для создания понятных и подробных отчетов о тестировании
 - **Lombok** - библиотека для сокращения boilerplate кода
 - **Gson** - библиотека для сериализации/десериализации JSON
 - **AssertJ** - библиотека для выразительных проверок (assertions)
@@ -104,38 +107,6 @@
 - ✅ Проверка значений в response body по определенному пути
 - ✅ Проверка полученных DTO моделей (используется AssertJ для выразительных assertions)
 
-## 📁 Структура проекта
-
-```
-reqres-project-api-tests/
-├── src/test/java/
-│   ├── api/                           # API слой - методы для взаимодействия с API
-│   │   ├── AuthenticationApi.java     # Методы аутентификации
-│   │   └── UserManagementApi.java     # Методы управления пользователями
-│   ├── config/                        # Конфигурация тестов
-│   │   └── BaseApiTest.java           # Базовый класс с настройками RestAssured
-│   ├── helpers/                       # Вспомогательные классы
-│   │   └── TestData.java              # Тестовые данные
-│   ├── models/                        # DTO модели
-│   │   ├── request/                   # Модели для Request body
-│   │   │   ├── CreateUserRequest.java
-│   │   │   └── LoginRequest.java
-│   │   └── response/                  # Модели для Response body
-│   │       ├── CreateUserResponse.java
-│   │       ├── ErrorResponse.java
-│   │       ├── LoginResponse.java
-│   │       ├── UserData.java
-│   │       ├── UserResponse.java
-│   │       └── UsersListResponse.java
-│   ├── specs/                         # Спецификации
-│   │   └── ResponseSpec.java          # Response спецификации для статус-кодов
-│   └── tests/                         # Тестовые классы
-│       ├── AuthenticationTest.java    # Тесты аутентификации
-│       └── UserManagementTest.java    # Тесты управления пользователями
-└── src/test/resources/
-    ├── http-request.ftl               # Шаблон для логирования запросов в Allure
-    └── http-response.ftl              # Шаблон для логирования ответов в Allure
-```
 
 ## 🚀 Запуск тестов
 
