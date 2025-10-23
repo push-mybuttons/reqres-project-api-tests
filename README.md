@@ -11,6 +11,7 @@
 - [Покрытый функционал](#покрытый-функционал)
 - [Запуск тестов](#запуск-тестов)
 - [Allure отчет](#allure-отчет)
+- [Jenkins CI/CD](#jenkins-cicd)
 
 ## 🛠 Технологии и инструменты
 
@@ -20,13 +21,15 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original-wordmark.svg" title="JUnit 5" alt="JUnit 5" width="40" height="40"/>      
 <img src="https://avatars.githubusercontent.com/u/19369327?s=200&v=4" title="REST Assured" alt="REST Assured" width="40" height="40"/>
 <img src="https://avatars.githubusercontent.com/u/5879054?s=200&v=4" title="Allure Report" alt="Allure Report" width="40" height="40"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" title="Jenkins" alt="Jenkins" width="40" height="40"/>
 </p>
 
 - **Java 17** - язык программирования
-- **Gradle** - система автоматизации сборки проекта
+- **Gradle 8.10** - система автоматизации сборки проекта
 - **JUnit 5** - фреймворк для тестирования
 - **REST Assured** - библиотека для тестирования REST API
 - **Allure Report** - инструмент для создания понятных и подробных отчетов о тестировании
+- **Jenkins** - CI/CD инструмент для автоматизации запуска тестов
 - **Lombok** - библиотека для сокращения boilerplate кода
 - **Gson** - библиотека для сериализации/десериализации JSON
 - **AssertJ** - библиотека для выразительных проверок (assertions)
@@ -117,14 +120,12 @@
 gradle clean test
 
 # Запуск с указанием базового URL
-gradle clean test -Dbase.url=https://reqres.in
+./gradlew clean test -Dbase.url=https://reqres.in
 
 # Запуск конкретного тестового класса
-gradle clean test --tests AuthenticationTest
+./gradlew clean test --tests tests.AuthenticationTest
+./gradlew clean test --tests tests.UserManagementTest
 
-# Запуск тестов с определенным тегом
-gradle clean test --tests "*" --tag smoke
-```
 
 ### Параметры запуска
 
