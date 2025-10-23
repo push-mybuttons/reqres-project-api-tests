@@ -125,7 +125,7 @@ gradle clean test
 # Запуск конкретного тестового класса
 ./gradlew clean test --tests tests.AuthenticationTest
 ./gradlew clean test --tests tests.UserManagementTest
-
+```
 
 ### Параметры запуска
 
@@ -151,6 +151,23 @@ gradle allureReport
 - 🏷 Отображение Severity уровней и Owner
 - 📎 Attachments с полными данными запросов и ответов
 - ⏱ Временные метки и длительность выполнения тестов
+
+## 🔄 Jenkins CI/CD
+
+Проект интегрирован с Jenkins для автоматизации запуска тестов и генерации отчетов.
+
+### 🔗 Jenkins Job
+**[Открыть в Jenkins](https://jenkins.autotests.cloud/job/035-mariia_p-api/)**
+
+### Возможности CI/CD
+- ✅ Автоматический запуск тестов при изменении кода
+- ✅ Параметризованный запуск с выбором окружения (BASE_URL)
+- ✅ Генерация Allure отчетов после каждого прогона
+- ✅ История выполнения тестов и трендов
+- ✅ Интеграция с GitHub
+
+### Пример запуска
+📊 [Последний запуск: Build #5](https://jenkins.autotests.cloud/job/035-mariia_p-api/5/)
 
 ## 👤 Автор
 
