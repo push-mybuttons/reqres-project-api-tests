@@ -3,9 +3,9 @@ package tests;
 import api.UserManagementApi;
 import config.BaseApiTest;
 import io.qameta.allure.*;
+import models.User;
 import models.request.CreateUserRequest;
 import models.response.CreateUserResponse;
-import models.response.UserData;
 import models.response.UserResponse;
 import models.response.UsersListResponse;
 import org.junit.jupiter.api.DisplayName;
@@ -48,7 +48,7 @@ public class UserManagementTest extends BaseApiTest {
         });
 
         step("Проверка конкретного первого пользователя", () -> {
-            UserData firstUser = response.getData().get(0);
+            User firstUser = response.getData().get(0);
             assertThat(firstUser.getId()).isEqualTo(1);
             assertThat(firstUser.getEmail()).isEqualTo("george.bluth@reqres.in");
             assertThat(firstUser.getFirstName()).isEqualTo("George");
@@ -72,7 +72,7 @@ public class UserManagementTest extends BaseApiTest {
         );
 
         step("Проверка конкретных данных пользователя " + expectedFirstName, () -> {
-            UserData user = response.getData();
+            User user = response.getData();
             assertThat(user.getId()).isEqualTo(userId);
             assertThat(user.getEmail()).isEqualTo(expectedEmail);
             assertThat(user.getFirstName()).isEqualTo(expectedFirstName);

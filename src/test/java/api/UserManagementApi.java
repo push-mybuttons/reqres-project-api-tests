@@ -4,6 +4,7 @@ import models.request.CreateUserRequest;
 import models.response.CreateUserResponse;
 import models.response.UserResponse;
 import models.response.UsersListResponse;
+import specs.RequestSpec;
 import specs.ResponseSpec;
 
 import static io.restassured.RestAssured.given;
@@ -12,6 +13,7 @@ public class UserManagementApi {
 
     public UsersListResponse getUsersList(int page) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .queryParam("page", page)
                 .when()
                 .get("/users")
@@ -22,6 +24,7 @@ public class UserManagementApi {
 
     public UserResponse getSingleUser(int userId) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .when()
                 .get("/users/{id}", userId)
                 .then()
@@ -31,6 +34,7 @@ public class UserManagementApi {
 
     public CreateUserResponse createUser(CreateUserRequest request) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .body(request)
                 .when()
                 .post("/users")
@@ -41,6 +45,7 @@ public class UserManagementApi {
 
     public void deleteUser(int userId) {
         given()
+                .spec(RequestSpec.baseRequestSpec())
                 .when()
                 .delete("/users/{id}", userId)
                 .then()
@@ -49,6 +54,7 @@ public class UserManagementApi {
 
     public void getUserNotFound(int userId) {
         given()
+                .spec(RequestSpec.baseRequestSpec())
                 .when()
                 .get("/users/{id}", userId)
                 .then()
@@ -57,6 +63,7 @@ public class UserManagementApi {
 
     public CreateUserResponse updateUser(int userId, CreateUserRequest request) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .body(request)
                 .when()
                 .put("/users/{id}", userId)

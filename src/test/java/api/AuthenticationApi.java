@@ -3,14 +3,15 @@ package api;
 import models.request.LoginRequest;
 import models.response.ErrorResponse;
 import models.response.LoginResponse;
+import specs.RequestSpec;
+import specs.ResponseSpec;
 
 import static io.restassured.RestAssured.given;
-
-import specs.ResponseSpec;
 
 public class AuthenticationApi {
     public LoginResponse login(LoginRequest loginRequest) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .body(loginRequest)
                 .when()
                 .post("/login")
@@ -21,6 +22,7 @@ public class AuthenticationApi {
 
     public ErrorResponse loginWithInvalidData(LoginRequest loginRequest) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .body(loginRequest)
                 .when()
                 .post("/login")
@@ -31,6 +33,7 @@ public class AuthenticationApi {
 
     public ErrorResponse loginWithNonExistentUser(LoginRequest loginRequest) {
         return given()
+                .spec(RequestSpec.baseRequestSpec())
                 .body(loginRequest)
                 .when()
                 .post("/login")

@@ -1,4 +1,4 @@
-package models.response;
+package models;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserData {
+public class User {
 
     private Integer id;
     private String email;
@@ -23,3 +23,4 @@ public class UserData {
 
     private String avatar;
 }
+
